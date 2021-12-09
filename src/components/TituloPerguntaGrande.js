@@ -7,8 +7,6 @@ export default function TituloPerguntaGrande(props){
     else{
         setHide = "";
     }
-    console.log(setHide);
-    console.log(props.hide);
 
     return (
         <h1 class = {`${setHide}`}>

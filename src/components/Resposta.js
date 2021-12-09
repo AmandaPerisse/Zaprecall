@@ -9,7 +9,7 @@ export default function Resposta(props){
     }
 
     return (
-        <h6>
+        <h6 class = {`${setHide}`}>
             {props.resposta}
         </h6>
     );

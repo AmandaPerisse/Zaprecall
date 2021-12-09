@@ -1,23 +1,31 @@
-export default function PageTwoButtons(){
+export default function PageTwoButtons(props){
+
+    let setHide = "";
+    if (props.hide){
+        setHide = "hide";
+    }
+    else{
+        setHide = "";
+    }
 
     const items = [
-        {num: "1", mensagem: "Aprendi<br/>agora"},
-        {num: "2", mensagem: "Não<br/>lembrei"},
-        {num: "3", mensagem: "Lembrei<br/>com<br/>esforço"},
-        {num: "4", mensagem: "Zap!"}
+        {num: "1", mensagem: "Aprendi\nagora", funcao: props.funcaoAcerto },
+        {num: "2", mensagem: "Não\nlembrei", funcao: props.funcaoErro},
+        {num: "3", mensagem: "Lembrei\ncom\nesforço", funcao: props.funcaoAcerto},
+        {num: "4", mensagem: "Zap!", funcao: props.funcaoAcerto}
     ];
 
     return (
-        <div class = "hide page2-buttons">
+        <div class = {`${setHide} page2-buttons`}>
             {items.map((item) => {
-                return <Button num = {item.num} mensagem = {item.mensagem} />
+                return <Button num = {item.num} mensagem = {item.mensagem} funcao = {item.funcao} />
             })}
         </div>
     );
 }
 function Button(props){
     return (
-        <button class = {`page2-button button${props.num}`}>
+        <button onClick = {() => (props.funcao)()} class = {`page2-button button${props.num}`}>
             <p class = "p2">
                 {props.mensagem}
             </p>

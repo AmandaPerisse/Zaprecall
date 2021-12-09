@@ -3,35 +3,43 @@ import React from 'react';
 
 import PageTwoBoxOne from "./components/PageTwoBoxOne";
 import PageTwoBoxTwo from "./components/PageTwoBoxTwo";
+import PaginaInicial from "./components/PaginaInicial";
 
 function App() {
-  const [isHideT, setIsHideT] = React.useState("");
-  const [isHideF, setIsHideF] = React.useState("hide");
+  const [isHidePage1, setisHidePage1] = React.useState("");
+  const [isHidePage2, setisHidePage2] = React.useState("hide");
+  const [isHideBoxOne, setisHideBoxOne] = React.useState(false);
+  const [isHideBoxTwo, setisHideBoxTwo] = React.useState(true);
+  const [qtdMistakes, setiqtdMistakes] = React.useState(0);
 
   function hide(){
-    setIsHideT("hide");
-    setIsHideF("");
+    setisHidePage1("hide");
+    setisHidePage2("");
+  }
+
+  function wrongOrRight(){
+    setiqtdMistakes(1);
+  }
+
+  function result(){
+    setisHideBoxOne(true);
+    setisHideBoxTwo(false);
   }
 
   return (
     <>
-        <div class = {` ${isHideT} page1 flex`}>
-            <img id = "page1-logo" src = "img/logo.png" />
-            <button onClick = {() => hide()} class = "page1-button flex">
-                <h4>
-                    Praticar React
-                </h4>
-                <img src = "img/next.png" />
-            </button>
-        </div>
-        
-        <div  class = {` ${isHideF} page2`}>
-            <header class = "header">
-                <img src = "img/logo-mini.png" />
-            </header>
-            <PageTwoBoxOne />
-            <PageTwoBoxTwo />
-        </div>
+      <div class = {` ${isHidePage1} page1 flex`}>
+          <img id = "page1-logo" src = "img/logo.png" />
+          <PaginaInicial funcao = {hide} />
+      </div>
+      
+      <div  class = {` ${isHidePage2} page2`}>
+          <header class = "header">
+              <img src = "img/logo-mini.png" />
+          </header>
+          <PageTwoBoxOne funcao = {wrongOrRight} funcaoResult = {result} hide = {isHideBoxOne} />
+          <PageTwoBoxTwo erros = {qtdMistakes} hide = {isHideBoxTwo} />
+      </div>
     </>
   );
 }
