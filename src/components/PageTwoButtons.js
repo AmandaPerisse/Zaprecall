@@ -25,7 +25,7 @@ export default function PageTwoButtons(props){
 }
 function Button(props){
     return (
-        <button onClick = {() => (props.funcao)()} class = {`page2-button button${props.num}`}>
+        <button onClick = {() => (props.funcao)(props.num)} class = {`page2-button button${props.num}`}>
             <p class = "p2">
                 {props.mensagem}
             </p>

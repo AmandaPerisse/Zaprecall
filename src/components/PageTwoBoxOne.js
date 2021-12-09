@@ -24,6 +24,7 @@ export default function PageTwoBoxOne(props){
     const [hideTurn, sethideTurn] = React.useState(false);
     const [hideButtons, sethideButtons] = React.useState(true);
     const [hideMini, sethideMini] = React.useState(true);
+    const [putColor, setputColor] = React.useState(false);
 
     const [i, seti] = React.useState(0);
 
@@ -32,6 +33,7 @@ export default function PageTwoBoxOne(props){
 
     
     function increment(){
+        setputColor("");
         if(i==1){
             seti(0);
             setwhichQuestion(whichQuestion+1);
@@ -78,8 +80,17 @@ export default function PageTwoBoxOne(props){
         }
     }
 
-    function buttonRight(){
+    function buttonRight(cor){
         seti(1);
+        if(cor == 1){
+            setputColor("black");
+        }
+        else if(cor == 3){
+            setputColor("green");
+        }
+        else{
+            setputColor("yellow");
+        }
         if(itemsNum == 8){
             (props.funcaoResult)();
         }
@@ -97,8 +108,9 @@ export default function PageTwoBoxOne(props){
         }
     }
 
-    function buttonWrong(){
+    function buttonWrong(cor){
         seti(1);
+        setputColor("red");
         if(itemsNum == 8){
             (props.funcaoResult)();
         }
@@ -118,7 +130,7 @@ export default function PageTwoBoxOne(props){
     }
 
     return (
-        <div class = {`${setHide} page2-box1 flex`}>
+        <div class = {`${setHide} ${putColor} page2-box1 flex`}>
             <div class = "page2-num">
                 <TituloPerguntaMini question = {itemsPerguntas[whichQuestion]} hide = {hideMini}/>
                 <ContadorPerguntas question = {itemsNum} />
