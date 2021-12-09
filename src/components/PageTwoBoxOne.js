@@ -21,72 +21,100 @@ export default function PageTwoBoxOne(props){
     const [whichAnswer, setwhichAnswer] = React.useState(0);
     const [whichQuestion, setwhichQuestion] = React.useState(0);
     const [hideBig, sethideBig] = React.useState(false);
+    const [hideTurn, sethideTurn] = React.useState(false);
+    const [hideButtons, sethideButtons] = React.useState(true);
     const [hideMini, sethideMini] = React.useState(true);
-    const [temErro, settemErro] = React.useState(false);
+
+    const [i, seti] = React.useState(0);
 
     const itemsPerguntas = ["Pergunta1", "Pergunta2", "Pergunta3", "Pergunta4", "Pergunta5", "Pergunta6", "Pergunta7", "Pergunta8"];
     const itemsRespostas = ["Resposta1", "Resposta2", "Resposta3", "Resposta4", "Resposta5", "Resposta6", "Resposta7", "Resposta8"];
 
     
     function increment(){
-        if (hideBig){
-            sethideBig(false);
-        }   
-        else{
-            sethideBig(true);
+        if(i==1){
+            seti(0);
+            setwhichQuestion(whichQuestion+1);
+            setwhichAnswer(whichAnswer+1);
+            setitemsNum(itemsNum+1);
+            if (hideBig){
+                sethideBig(false);
+            }   
+            else{
+                sethideBig(true);
+            }
+            if (hideMini){
+                sethideMini(false);
+            }   
+            else{
+                sethideMini(true);
+            }
         }
-        if (hideMini){
-            sethideMini(false);
-        }   
         else{
-            sethideMini(true);
+            if (hideBig){
+                sethideBig(false);
+            }   
+            else{
+                sethideBig(true);
+            }
+            if (hideMini){
+                sethideMini(false);
+            }   
+            else{
+                sethideMini(true);
+            }
+            if (hideTurn){
+                sethideTurn(false);
+            }   
+            else{
+                sethideTurn(true);
+            }   
+            if (hideButtons){
+                sethideButtons(false);
+            }   
+            else{
+                sethideButtons(true);
+            }
         }
     }
 
     function buttonRight(){
+        seti(1);
         if(itemsNum == 8){
             (props.funcaoResult)();
         }
-        setwhichQuestion(whichQuestion+1);
-        setwhichAnswer(whichAnswer+1);
-        setitemsNum(itemsNum+1);
-        if (hideBig){
-            sethideBig(false);
+        if (hideTurn){
+            sethideTurn(false);
         }   
         else{
-            sethideBig(true);
-        }
-        if (hideMini){
-            sethideMini(false);
+            sethideTurn(true);
+        }   
+        if (hideButtons){
+            sethideButtons(false);
         }   
         else{
-            sethideMini(true);
+            sethideButtons(true);
         }
     }
 
     function buttonWrong(){
-        console.log(temErro);
-        settemErro(true);
-        console.log(temErro);
+        seti(1);
         if(itemsNum == 8){
             (props.funcaoResult)();
         }
         (props.funcao)();
-        setwhichQuestion(whichQuestion+1);
-        setwhichAnswer(whichAnswer+1);
-        setitemsNum(itemsNum+1);
-        if (hideBig){
-            sethideBig(false);
+        if (hideTurn){
+            sethideTurn(false);
         }   
         else{
-            sethideBig(true);
-        }
-        if (hideMini){
-            sethideMini(false);
+            sethideTurn(true);
+        }  
+        if (hideButtons){
+            sethideButtons(false);
         }   
         else{
-            sethideMini(true);
-        }
+            sethideButtons(true);
+        } 
     }
 
     return (
@@ -100,8 +128,8 @@ export default function PageTwoBoxOne(props){
                 <Resposta resposta = {itemsRespostas[whichAnswer]} hide = {hideMini}/>
             </div>
             <div class = "page2-turn">
-                <PageTwoTurn funcao = {increment} hide = {hideBig} />
-                <PageTwoButtons funcaoAcerto = {buttonRight} funcaoErro = {buttonWrong} hide = {hideMini} />
+                <PageTwoTurn funcao = {increment} hide = {hideTurn} />
+                <PageTwoButtons funcaoAcerto = {buttonRight} funcaoErro = {buttonWrong} hide = {hideButtons} />
             </div>
         </div>
     );
