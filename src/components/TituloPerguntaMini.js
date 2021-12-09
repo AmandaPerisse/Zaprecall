@@ -1,7 +1,7 @@
-export default function TituloPerguntaMini(){
+export default function TituloPerguntaMini(props){
     return (
         <h6>
-            O que é JSX?
+            {props.question}
         </h6>
     );
 }

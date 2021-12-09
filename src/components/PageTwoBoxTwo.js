@@ -1,4 +1,10 @@
 export default function PageTwoBoxTwo(){
+
+    const items = [
+        {titulo: "PARABÉNS", img: "party", mensagem: "Você não esqueceu de nenhum flashcard!"},
+        {titulo: "Putz..", img: "sad", mensagem: "Você esqueceu alguns flashcards..<br />Não desanime! Na próxima você consegue!"},
+    ];
+
     return (
         <div class = "hide page2-box2 flex">
             <div class = "flex">
